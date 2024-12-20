@@ -125,7 +125,7 @@ brew bundle --file=- <<EOF
 # required
 # mas-cli to install macOS apps
 brew "mas"
-mas "XCode", id: 497799835
+# mas "XCode", id: 497799835
 
 # Android
 cask "zulu@17" unless File.directory?("/opt/homebrew/Caskroom/zulu@17/")
@@ -147,6 +147,28 @@ brew "neovim"
 
 
 EOF
+
+prompt_user() {
+    local prompt_message="$1"
+    read -p "$prompt_message (y/n): " choice
+    if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
+        return 0  # Success
+    else
+        return 1  # Failure
+    fi
+}
+
+# Example usage
+if prompt_user "Do you really want to install Visual Studio Code?"; then
+    brew install --cask visual-studio-code >/dev/null 2>&1 && echo "Visual Studio Code installed successfully." || echo "Failed to install Visual Studio Code. Or it's already installed."
+fi
+
+
+if prompt_user "Do you really want to install xCode?"; then
+    mas install 497799835 >/dev/null 2>&1 && echo "XCode installed successfully." || echo "Failed to install XCode. Or it's already installed."
+fi
+
+
 
 fancy_echo "Configuring asdf version manager ..."
 if [ ! -d "$HOME/.asdf" ]; then
