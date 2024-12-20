@@ -126,7 +126,6 @@ brew bundle --file=- <<EOF
 # mas-cli to install macOS apps
 brew "mas"
 mas "XCode", id: 497799835
-tap "homebrew/cask-versions"
 
 # Android
 cask "zulu@17" unless File.directory?("/opt/homebrew/Caskroom/zulu@17/")
@@ -139,6 +138,7 @@ brew "watchman"
 cask "slack" unless File.directory?("/Applications/Slack.app")
 cask "google-chrome" unless File.directory?("/Applications/Google Chrome.app")
 cask "postman" unless File.directory?("/Applications/Postman.app")
+brew "gh"
 
 
 # Editor
@@ -187,6 +187,53 @@ gem_install_or_update cocoapods
 gem_install_or_update gem install cocoapods-deintegrate
 fancy_echo "Installing LTS Node ..."
 install_asdf_language "nodejs" $node_lts
+
+# NOTE: Github ssh key setup
+if ! check_ssh_key; then
+	fancy_echo "No SSH key found. Authenticating with GH CLI..."
+	gh auth login
+else
+	fancy_echo "SSH key is already set up. Skipping GitHub authentication."
+fi
+
+repos=(
+  "git@github.com:romkatv/powerlevel10k.git $HOME/powerlevel10k"
+)
+
+# Clone repositories
+for repo in "${repos[@]}"; do
+  repo_url=$(echo "$repo" | awk '{print $1}')
+  target_dir=$(echo "$repo" | awk '{print $2}')
+
+  # Ensure the parent directory exists
+  parent_dir=$(dirname "${target_dir/#\~/$HOME}")
+  if [ ! -d "$parent_dir" ]; then
+    echo "Creating directory $parent_dir..."
+    mkdir -p "$parent_dir"
+  fi
+
+  # Clone the repository if it doesn't already exist
+  if [ ! -d "${target_dir/#\~/$HOME}" ]; then
+    echo "Cloning $repo_url into ${target_dir/#\~/$HOME}..."
+    git clone --depth=1 "$repo_url" "${target_dir/#\~/$HOME}"
+  else
+    echo "Repository already exists at ${target_dir/#\~/$HOME}. Skipping clone."
+  fi
+done
+
+#NOTE: install OHMZSH
+
+ if [ ! -d "$HOME/.oh-my-zsh" ]; then
+   echo "Installing Oh My Zsh..."
+   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+ else
+   echo "Oh My Zsh is already installed. Skipping installation."
+ fi
+
+fancy_echo 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+fancy_echo 'powerlevel10k'
+fancy_echo "echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc"
+
 
 if [ -f "$HOME/.laptop.local" ]; then
 	fancy_echo "Running your customizations from ~/.laptop.local ..."
