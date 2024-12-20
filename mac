@@ -126,7 +126,7 @@ brew bundle --file=- <<EOF
 # mas-cli to install macOS apps
 brew "mas"
 # mas "XCode", id: 497799835
-
+brew "w3m"
 # Android
 cask "zulu@17" unless File.directory?("/opt/homebrew/Caskroom/zulu@17/")
 cask "android-studio" unless File.directory?("/Applications/Android Studio.app")
@@ -149,26 +149,23 @@ brew "neovim"
 EOF
 
 prompt_user() {
-    local prompt_message="$1"
-    read -p "$prompt_message (y/n): " choice
-    if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
-        return 0  # Success
-    else
-        return 1  # Failure
-    fi
+	local prompt_message="$1"
+	read -p "$prompt_message (y/n): " choice
+	if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
+		return 0 # Success
+	else
+		return 1 # Failure
+	fi
 }
 
 # Example usage
 if prompt_user "Do you really want to install Visual Studio Code?"; then
-    brew install --cask visual-studio-code >/dev/null 2>&1 && echo "Visual Studio Code installed successfully." || echo "Failed to install Visual Studio Code. Or it's already installed."
+	brew install --cask visual-studio-code >/dev/null 2>&1 && echo "Visual Studio Code installed successfully." || echo "Failed to install Visual Studio Code. Or it's already installed."
 fi
-
 
 if prompt_user "Do you really want to install xCode?"; then
-    mas install 497799835 >/dev/null 2>&1 && echo "XCode installed successfully." || echo "Failed to install XCode. Or it's already installed."
+	mas install 497799835 >/dev/null 2>&1 && echo "XCode installed successfully." || echo "Failed to install XCode. Or it's already installed."
 fi
-
-
 
 fancy_echo "Configuring asdf version manager ..."
 if [ ! -d "$HOME/.asdf" ]; then
@@ -213,57 +210,19 @@ install_asdf_language "nodejs" $node_lts
 # NOTE: Github ssh key setup
 if ! check_ssh_key; then
 	fancy_echo "No SSH key found. Authenticating with GH CLI..."
-  fancy_echo "Run gh auth login, then restart the script, if it fails"
+	fancy_echo "Run gh auth login, then restart the script, if it fails"
 else
 	fancy_echo "SSH key is already set up. Skipping GitHub authentication."
 fi
 
-repos=(
-  "git@github.com:romkatv/powerlevel10k.git $HOME/powerlevel10k"
-)
-
-# Clone repositories
-for repo in "${repos[@]}"; do
-  repo_url=$(echo "$repo" | awk '{print $1}')
-  target_dir=$(echo "$repo" | awk '{print $2}')
-
-  # Ensure the parent directory exists
-  parent_dir=$(dirname "${target_dir/#\~/$HOME}")
-  if [ ! -d "$parent_dir" ]; then
-    echo "Creating directory $parent_dir..."
-    mkdir -p "$parent_dir"
-  fi
-
-  # Clone the repository if it doesn't already exist
-  if [ ! -d "${target_dir/#\~/$HOME}" ]; then
-    echo "Cloning $repo_url into ${target_dir/#\~/$HOME}..."
-    git clone --depth=1 "$repo_url" "${target_dir/#\~/$HOME}"
-  else
-    echo "Repository already exists at ${target_dir/#\~/$HOME}. Skipping clone."
-  fi
-done
-
-##NOTE: install OHMZSH
-#
-# if [ ! -d "$HOME/.oh-my-zsh" ]; then
-#   echo "Installing Oh My Zsh..."
-#   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-# else
-#   echo "Oh My Zsh is already installed. Skipping installation."
-# fi
-fancy_echo 'To install.. Oh My Zsh...'
-fancy_echo 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
-
-fancy_echo 'To install ... powerlevel10k'
-fancy_echo "echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc"
-
 fancy_echo 'View your dot files at..'
 fancy_echo 'https://github.com/johnMocingbird/dotfiles-stow'
 
+fancy_echo 'View the rest of the instuctions at..'
+fancy_echo 'w3m https://raw.githubusercontent.com/johnMocingbird/laptop/refs/heads/main/README.md'
 
 if [ -f "$HOME/.laptop.local" ]; then
 	fancy_echo "Running your customizations from ~/.laptop.local ..."
 	# shellcheck disable=SC1091
 	. "$HOME/.laptop.local"
 fi
-
