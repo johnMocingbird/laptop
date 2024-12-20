@@ -39,15 +39,28 @@ Execute the downloaded script:
 
 ```sh
 sh mac 2>&1 | tee ~/laptop.log
+```
+
+Clone dot files and copy laptop script
+
+```sh
 git clone git@github.com:johnMocingbird/dotfiles-stow.git
 cp dotfiles-stow/.laptop.local ./
 sh mac 2>&1 | tee ~/laptop.log
 ```
-
-Optionally, review the log:
-
+Stow
 ```sh
-less ~/laptop.log
+stow nvim
+stow zsh
+stow alacritty
+stow kitty
+stow nnn
+stow scripts
+stow sketcybar
+stow skhd
+stow svim
+stow tmuxinator
+stow yabai
 ```
 
 Optionally, [install thoughtbot/dotfiles][dotfiles].
