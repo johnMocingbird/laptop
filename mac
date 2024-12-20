@@ -213,7 +213,7 @@ install_asdf_language "nodejs" $node_lts
 # NOTE: Github ssh key setup
 if ! check_ssh_key; then
 	fancy_echo "No SSH key found. Authenticating with GH CLI..."
-	gh auth login
+  fanch_echo "Run gh auth login, then restart the script"
 else
 	fancy_echo "SSH key is already set up. Skipping GitHub authentication."
 fi
