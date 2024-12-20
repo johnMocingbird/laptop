@@ -60,12 +60,34 @@ stow nvim
 stow nnn
 stow mac-tmux-scripts
 stow kitty
-stow alacirtty
+stow alacritty
 
 chmod +x ~/scripts/*
-
-
 ```
+
+Install sketcybard
+```sh
+cd ~./config/sketcybar/
+
+chmod +x install_sketchybar.sh 
+./install_sketchybar.sh
+```
+
+Hot keys to change
+
+alfed 
+alt + d
+
+
+TODO Setup Cloudflared for remote connections
+
+
+
+
+
+
+
+
 
 Optionally, [install thoughtbot/dotfiles][dotfiles].
 
