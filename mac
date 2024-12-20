@@ -257,6 +257,9 @@ fancy_echo 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzs
 fancy_echo 'To install ... powerlevel10k'
 fancy_echo "echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc"
 
+fancy_echo 'View your dot files at..'
+fancy_echo 'https://github.com/johnMocingbird/dotfiles-stow'
+
 
 if [ -f "$HOME/.laptop.local" ]; then
 	fancy_echo "Running your customizations from ~/.laptop.local ..."
