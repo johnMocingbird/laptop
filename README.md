@@ -38,6 +38,7 @@ less mac
 Execute the downloaded script:
 
 ```sh
+sh mac 2>&1 | tee ~/laptop.log
 git clone git@github.com:johnMocingbird/dotfiles-stow.git
 cp dotfiles-stow/.laptop.local ./
 sh mac 2>&1 | tee ~/laptop.log
