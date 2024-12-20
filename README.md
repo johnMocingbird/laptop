@@ -50,17 +50,21 @@ sh mac 2>&1 | tee ~/laptop.log
 ```
 Stow
 ```sh
-stow nvim
 stow zsh
-stow alacritty
-stow kitty
-stow nnn
-stow scripts
-stow sketcybar
-stow skhd
-stow svim
 stow tmuxinator
 stow yabai
+stow svim
+stow skhd
+stow sketchybar
+stow nvim
+stow nnn
+stow mac-tmux-scripts
+stow kitty
+stow alacirtty
+
+chmod +x ~/scripts/*
+
+
 ```
 
 Optionally, [install thoughtbot/dotfiles][dotfiles].
