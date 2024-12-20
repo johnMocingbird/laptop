@@ -243,17 +243,18 @@ for repo in "${repos[@]}"; do
   fi
 done
 
-#NOTE: install OHMZSH
-
- if [ ! -d "$HOME/.oh-my-zsh" ]; then
-   echo "Installing Oh My Zsh..."
-   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
- else
-   echo "Oh My Zsh is already installed. Skipping installation."
- fi
-
+##NOTE: install OHMZSH
+#
+# if [ ! -d "$HOME/.oh-my-zsh" ]; then
+#   echo "Installing Oh My Zsh..."
+#   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# else
+#   echo "Oh My Zsh is already installed. Skipping installation."
+# fi
+fancy_echo 'To install.. Oh My Zsh...'
 fancy_echo 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
-fancy_echo 'powerlevel10k'
+
+fancy_echo 'To install ... powerlevel10k'
 fancy_echo "echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc"
 
 
@@ -263,4 +264,3 @@ if [ -f "$HOME/.laptop.local" ]; then
 	. "$HOME/.laptop.local"
 fi
 
-fancy_echo "zulu17 JDK file path can be found with brew info --cask zulu@17"
