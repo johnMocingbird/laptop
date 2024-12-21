@@ -42,6 +42,7 @@ sh mac 2>&1 | tee ~/laptop.log
 Stow
 
 ```sh
+cd ~/dotfiles-stow
 stow zsh
 stow tmuxinator
 stow yabai
@@ -60,7 +61,7 @@ chmod +x ~/scripts/*
 Install sketcybar
 
 ```sh
-cd ~./config/sketcybar/
+cd ~/.config/sketchybar/
 
 chmod +x install_sketchybar.sh
 ./install_sketchybar.sh

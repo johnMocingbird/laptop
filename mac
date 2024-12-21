@@ -5,6 +5,38 @@ xcode-select --install
 # Be prepared to turn your laptop (or desktop, no haters here)
 # into an awesome development machine.
 
+create_vimrc() {
+	echo "Setting up .vimrc..."
+
+	# Check if .vimrc exists, create it if not
+	if [ ! -f "$HOME/.vimrc" ]; then
+		touch "$HOME/.vimrc"
+		echo ".vimrc created!"
+	else
+		echo ".vimrc already exists, skipping creation."
+	fi
+
+	# Add content to .vimrc
+	cat <<EOF >"$HOME/.vimrc"
+" Basic settings
+set number           " Show line numbers
+syntax on            " Enable syntax highlighting
+set tabstop=4        " Set tab width
+set shiftwidth=4     " Set indentation width
+set expandtab        " Use spaces instead of tabs
+set relativenumber   " Show relative line numbers
+
+vnoremap y "+y
+noremap y "+y
+noremap p "+p
+EOF
+
+	echo ".vimrc has been configured!"
+}
+
+# Call the function in the script
+create_vimrc
+
 # shellcheck disable=SC3043
 
 fancy_echo() {
@@ -127,8 +159,6 @@ brew bundle --file=- <<EOF
 brew "mas"
 # mas "XCode", id: 497799835
 brew "w3m"
-brew "tmux"
-brew "aspell"
 
 # Android
 cask "zulu@17" unless File.directory?("/opt/homebrew/Caskroom/zulu@17/")
@@ -209,10 +239,9 @@ gem_install_or_update gem install cocoapods-deintegrate
 fancy_echo "Installing LTS Node ..."
 install_asdf_language "nodejs" $node_lts
 
-fancy_echo "View the rest of the instructions in neovim, the command was copied to the clipboard"
-echo "tmux new-session 'nvim https://esthing64.dev/setup'" | pbcopy
-
+fancy_echo "View the rest of the instructions in vim, the command was copied to the clipboard"
 fancy_echo 'Please continue in a new terminal'
+echo "tmux new-session 'vim https://esthing64.dev/setup'" | pbcopy
 
 if [ -f "$HOME/.laptop.local" ]; then
 	fancy_echo "Running your customizations from ~/.laptop.local ..."

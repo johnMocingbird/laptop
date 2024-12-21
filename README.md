@@ -11,7 +11,7 @@ open https://esthing64.dev/setup
 or open in nvim
 
 ```sh
-nvim https://esthing64.dev/setup
+vim https://esthing64.dev/setup
 
 ```
 
@@ -24,6 +24,8 @@ based on what is already installed on the machine.
 Hot keys to change
 
 ## considerations
+
+setup Cloudflared to handle this computer for remote
 
 how to back up raycast
 
