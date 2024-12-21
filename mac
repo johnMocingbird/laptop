@@ -214,11 +214,7 @@ else
 	fancy_echo "SSH key is already set up. Skipping GitHub authentication."
 fi
 
-fancy_echo 'View your dot files at..'
-fancy_echo 'https://github.com/johnMocingbird/dotfiles-stow'
-
-fancy_echo 'View the rest of the instuctions at..'
-fancy_echo 'w3m https://raw.githubusercontent.com/johnMocingbird/laptop/refs/heads/main/README.md'
+source "$HOME/.zshrc"
 
 if [ -f "$HOME/.laptop.local" ]; then
 	fancy_echo "Running your customizations from ~/.laptop.local ..."
