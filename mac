@@ -208,15 +208,12 @@ gem_install_or_update gem install cocoapods-deintegrate
 fancy_echo "Installing LTS Node ..."
 install_asdf_language "nodejs" $node_lts
 
-# NOTE: Github ssh key setup
-if ! check_ssh_key; then
-	fancy_echo "No SSH key found. Authenticating with GH CLI..."
-	fancy_echo "Run gh auth login, then restart the script, if it fails"
-else
-	fancy_echo "SSH key is already set up. Skipping GitHub authentication."
-fi
-
 source "$HOME/.zshrc"
+
+fancy_echo "View the rest of the instructions in neovim, the command was copied to the clipboard"
+echo "tmux new-session 'nvim https://esthing64.dev/setup'" | pbcopy
+
+fancy_echo 'Please continue in a new terminal'
 
 if [ -f "$HOME/.laptop.local" ]; then
 	fancy_echo "Running your customizations from ~/.laptop.local ..."
