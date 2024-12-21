@@ -128,6 +128,7 @@ brew "mas"
 # mas "XCode", id: 497799835
 brew "w3m"
 brew "tmux"
+brew "aspell"
 
 # Android
 cask "zulu@17" unless File.directory?("/opt/homebrew/Caskroom/zulu@17/")
@@ -207,8 +208,6 @@ gem_install_or_update cocoapods
 gem_install_or_update gem install cocoapods-deintegrate
 fancy_echo "Installing LTS Node ..."
 install_asdf_language "nodejs" $node_lts
-
-source "$HOME/.zshrc"
 
 fancy_echo "View the rest of the instructions in neovim, the command was copied to the clipboard"
 echo "tmux new-session 'nvim https://esthing64.dev/setup'" | pbcopy

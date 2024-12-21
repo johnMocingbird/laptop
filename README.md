@@ -3,7 +3,12 @@
 ## Quick setup
 
 visit
-https://esthing64.dev/setup
+
+```sh
+open https://esthing64.dev/setup
+```
+
+or open in nvim
 
 ```sh
 nvim https://esthing64.dev/setup
@@ -15,18 +20,6 @@ Laptop is a script to set up a macOS laptop for web and mobile development.
 It can be run multiple times on the same machine safely.
 It installs, upgrades, or skips packages
 based on what is already installed on the machine.
-
-## Requirements
-
-We support:
-
-- macOS Sequoia (15.x) on Apple Silicon and Intel
-- macOS Sonoma (14.x) on Apple Silicon and Intel
-- macOS Ventura (13.x) on Apple Silicon and Intel
-- macOS Monterey (12.x) on Apple Silicon and Intel
-
-Older versions may work but aren't regularly tested.
-Bug reports for older versions are welcome.
 
 ## Install
 
@@ -87,7 +80,7 @@ stow alacritty
 chmod +x ~/scripts/*
 ```
 
-Install sketcybard
+Install sketcybar
 
 ```sh
 cd ~./config/sketcybar/
@@ -98,8 +91,37 @@ chmod +x install_sketchybar.sh
 
 Hot keys to change
 
+## considerations
+
+how to back up raycast
+
+- how to handle links to raycast commands?
+
+how to restore alfred workflows?
+
+- <https://alfred.app/workflows/alfredapp/system-settings/>
+- <https://alfred.app/workflows/floatingpoint/spel/>
+- <https://alfred.app/workflows/alfredapp/thumbnail-navigation/>
+- <https://www.alfredforum.com/topic/15371-sidecar-toggle/>
+
+Arc - chrome: plugins
+
+- vimium
+- nighteye
+- advance bookmark manager
+- icloud password
+
+Shortcuts
+
+alt - m : menu
+
 alfed
 alt + d
+alt + b spell check
+
+homerow
+alt + f
+alt + shift + /
 
 TODO Setup Cloudflared for remote connections
 
@@ -238,41 +260,6 @@ can be used in your `~/.laptop.local`.
 
 See the [wiki](https://github.com/thoughtbot/laptop/wiki)
 for more customization examples.
-
-## Contributing
-
-Thank you, [contributors]!
-
-[contributors]: https://github.com/thoughtbot/laptop/graphs/contributors
-
-By participating in this project,
-you agree to abide by the thoughtbot [code of conduct].
-
-[code of conduct]: https://thoughtbot.com/open-source-code-of-conduct
-
-Edit the `mac` file.
-Document in the `README.md` file.
-Update the `CHANGELOG`.
-Follow shell style guidelines by using [ShellCheck] and [ALE] or deprecated [Syntastic].
-
-```sh
-brew install shellcheck
-```
-
-[ShellCheck]: http://www.shellcheck.net/about.html
-[Syntastic]: https://github.com/scrooloose/syntastic
-[ALE]: https://github.com/dense-analysis/ale
-
-### Testing your changes
-
-Test your changes by running the script on a fresh install of macOS.
-You can use the free and open source emulator [UTM].
-
-Tip: Make a fresh virtual machine with the installation of macOS completed and
-your user created and first launch complete. Then duplicate that machine to test
-the script each time on a fresh install thats ready to go.
-
-[UTM]: https://mac.getutm.app
 
 ## License
 
