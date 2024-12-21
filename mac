@@ -127,6 +127,8 @@ brew bundle --file=- <<EOF
 brew "mas"
 # mas "XCode", id: 497799835
 brew "w3m"
+brew "tmux"
+
 # Android
 cask "zulu@17" unless File.directory?("/opt/homebrew/Caskroom/zulu@17/")
 cask "android-studio" unless File.directory?("/Applications/Android Studio.app")

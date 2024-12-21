@@ -1,5 +1,15 @@
 # Laptop
 
+## Quick setup
+
+visit
+https://esthing64.dev/setup
+
+```sh
+nvim https://esthing64.dev/setup
+
+```
+
 Laptop is a script to set up a macOS laptop for web and mobile development.
 
 It can be run multiple times on the same machine safely.
