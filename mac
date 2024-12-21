@@ -142,7 +142,6 @@ brew "gh"
 
 
 # Editor
-cask "visual-studio-code" unless File.directory?("/Applications/Visual Studio Code.app")
 brew "neovim"
 
 
