@@ -21,6 +21,10 @@ sh mac 2>&1 | tee ~/laptop.log
 
 ```
 
+```sh
+curl -L -O https://esthing64.dev/mac
+```
+
 login to github
 
 ```sh
